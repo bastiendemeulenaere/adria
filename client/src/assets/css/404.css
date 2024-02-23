@@ -1,0 +1,24 @@
+.notfound {
+  height: 100%;
+  font-family: Montserrat, sans-serif;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.notfound a {
+  background: #56C1AE;
+  color: #f0f0f0;
+  text-decoration: none;
+  cursor: pointer;
+}
+.notfound p {
+  font-size: 2rem;
+  margin-bottom: 4rem;
+}
+.notfound h1 {
+  margin-bottom: 2rem;
+}
+
+/*# sourceMappingURL=404.css.map */

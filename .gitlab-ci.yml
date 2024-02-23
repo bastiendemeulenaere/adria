@@ -1,0 +1,17 @@
+image: registry.ti.howest.be:5000/project-2:server-deploy
+stages:
+ - deploy
+
+deploy-api:
+  stage: deploy
+  only:
+    - main
+  variables:
+    year: 2023-2024
+  except:
+    changes:
+      - documents/**/*
+  script:
+    - mv api-spec/openapi.yaml openapi-group-${CI_PROJECT_NAMESPACE:(-2)}.yaml
+    - scp -q openapi-group-${CI_PROJECT_NAMESPACE:(-2)}.yaml gitlab-runner@project-2.ti.howest.be:/opt/${year}/monitor/specifications/
+    - echo "Project 2 documentation for group ${CI_PROJECT_NAMESPACE##*/} deployed"

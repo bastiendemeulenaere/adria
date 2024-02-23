@@ -1,0 +1,51 @@
+.location-popup {
+  box-sizing: border-box;
+}
+.location-popup .info {
+  margin: 0 5rem 2rem;
+  height: 100%;
+}
+.location-popup .map {
+  height: 40dvh;
+  margin-bottom: 2rem;
+}
+.location-popup .bottom-container {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 50rem;
+}
+.location-popup .bottom-container .suggested-event-details li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  gap: 0.25rem;
+}
+.location-popup .bottom-container .image-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.location-popup .bottom-container img {
+  width: 100%;
+  object-fit: contain;
+}
+.location-popup h2 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+}
+.location-popup h3 {
+  font-size: 1.5rem;
+}
+.location-popup form {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#root.full-dvh {
+  height: 100dvh;
+}
+
+/*# sourceMappingURL=suggested-notification.css.map */

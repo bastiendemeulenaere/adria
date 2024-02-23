@@ -1,0 +1,76 @@
+#my-events {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  height: 90vh;
+  overflow-y: hidden;
+}
+#my-events .horizontal {
+  display: flex;
+  gap: 2rem;
+  overflow-x: scroll;
+  padding-bottom: 1rem;
+}
+#my-events h2 {
+  font-size: 1.75rem;
+  padding: 1rem 2rem 1rem;
+}
+#my-events #joined-events {
+  height: 90vh;
+}
+#my-events #joined-events .event {
+  flex: 0 0 18%;
+}
+#my-events #joined-events .event:first-child {
+  margin-left: 2rem;
+}
+#my-events #joined-events .event:last-child {
+  margin-right: 2rem;
+}
+#my-events #created-events {
+  box-sizing: border-box;
+  height: 90vh;
+  overflow: auto;
+}
+#my-events #created-events h2 {
+  position: sticky;
+  top: 0;
+  background: #f0f0f0;
+  padding-left: 2rem;
+}
+#my-events #created-events div.event-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+#my-events #created-events .event:last-child {
+  margin-bottom: 2rem;
+}
+#my-events .create-event-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 0;
+  margin-right: 2rem;
+  outline: 2px solid #56C1AE;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+#my-events .create-event-button span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#my-events .error {
+  color: #ff4444;
+  background-color: #ffebee;
+  border: 1px solid #ff4444;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-left: 2rem;
+}
+
+/*# sourceMappingURL=my-events-page.css.map */

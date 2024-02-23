@@ -1,0 +1,87 @@
+{
+  "name": "2023-adria-client",
+  "homepage": "https://emiel04.github.io/adriactive-client",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate-html": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --Werror --filterpattern \".*(v-|@).*\" --filterfile .vnuignore --skip-non-html ./src",
+    "validate-sonar-ci": "node_modules/sonar-scanner/bin/sonar-scanner",
+    "validate-sonar-local-mac": "node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=https://sonarqube.ti.howest.be",
+    "validate-sonar-local-win": ".\\node_modules\\sonar-scanner\\bin\\sonar-scanner -Dsonar.host.url=https://sonarqube.ti.howest.be",
+    "validate-ci": "npm run validate-html && npm run validate-sonar-ci",
+    "validate-local-mac": "npm run validate-html && npm run validate-sonar-local-mac",
+    "validate-local-win": "npm run validate-html && npm run validate-sonar-local-win",
+    "test": "jest --coverage --watchAll --env=jsdom",
+    "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/joy": "^5.0.0-beta.14",
+    "@mui/material": "^5.15.0",
+    "@mui/x-date-pickers": "^6.18.3",
+    "@vertx/eventbus-bridge-client.js": "^1.0.0-3-SNAPSHOT",
+    "axios": "^1.5.1",
+    "dayjs": "^1.11.10",
+    "jwt-decode": "^4.0.0",
+    "ol": "^8.1.0",
+    "primereact": "^10.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router": "^6.17.0",
+    "react-router-dom": "^6.17.0",
+    "sonar-scanner": "^3.1.0",
+    "uuid": "^9.0.1",
+    "vnu-jar": "^20.2.28"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@types/node": "^20.9.4",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.6",
+    "@types/vertx__eventbus-bridge-client.js": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "babel-jest": "^26.6.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
+    "jest": "^26.6.3",
+    "jest-sonar-reporter": "^2.0.0",
+    "jsdom": "^22.1.0",
+    "react-openlayers": "^0.1.5",
+    "sass": "^1.69.5",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "test-report.xml",
+    "indent": 4
+  }
+}

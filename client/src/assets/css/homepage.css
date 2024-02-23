@@ -1,0 +1,27 @@
+.homepage {
+  margin-bottom: 4rem;
+}
+.homepage header {
+  background: #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 0.5rem;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3);
+}
+.homepage header ul {
+  display: flex;
+  gap: 1em;
+  margin: 0 0.5rem;
+}
+.homepage header li {
+  display: inline-block;
+}
+.homepage header button {
+  cursor: pointer;
+}
+.homepage .pressed {
+  outline: 3px solid #757474;
+}
+
+/*# sourceMappingURL=homepage.css.map */

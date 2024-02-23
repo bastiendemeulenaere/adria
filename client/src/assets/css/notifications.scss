@@ -1,0 +1,38 @@
+#notification-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .sheet {
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+    outline: 1px solid lightgrey;
+    .card {
+      width: 50%;
+      margin: auto;
+      display: flex;
+      &:hover {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1);
+        cursor: pointer;
+      }
+      &:first-child{
+        margin-top: 2rem;
+      }
+      &:last-child{
+        margin-bottom: 2rem;
+      }
+
+    }
+
+  }
+
+}
+
+

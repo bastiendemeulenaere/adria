@@ -1,0 +1,33 @@
+@use "var";
+
+.homepage {
+  margin-bottom: 4rem;
+
+  header {
+    background: var.$white-color;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: .5rem;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.30);
+
+    ul {
+      display: flex;
+      gap: 1em;
+      margin: 0 .5rem;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  }
+
+  .pressed {
+    outline: 3px solid var.$selected-color;
+  }
+
+}

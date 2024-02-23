@@ -1,0 +1,45 @@
+.interests-page {
+  text-align: center;
+  padding: 20px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+
+    .box-interest {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 50%;
+
+      & > div {
+        padding: 2rem;
+        border-radius: 1rem;
+        display: flex;
+      }
+    }
+
+    .interest-checkbox {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+  }
+
+  .skip-button {
+    margin-top: 20px;
+  }
+}

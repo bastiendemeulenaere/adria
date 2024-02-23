@@ -1,0 +1,72 @@
+.profile-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50rem;
+}
+
+.profile-picture {
+  margin-top: 5rem;
+}
+.profile-picture svg {
+  width: 10rem;
+  height: auto;
+}
+
+.user h2 {
+  margin-bottom: 1rem;
+}
+
+.edit-button {
+  left: 2%;
+  position: absolute;
+}
+
+.profile-info {
+  margin-left: 5%;
+  float: left;
+}
+
+.interests-list {
+  float: right;
+  padding: 2rem;
+  background-color: #d2d5d5;
+  border-radius: 1rem;
+  text-align: center;
+  margin-top: 9rem;
+}
+
+.interests-list h2 {
+  color: #212427;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  margin-top: 0.5rem;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.list-container h3 {
+  margin: 0.3rem;
+  background-color: #989696;
+  color: #f0f0f0;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.4rem;
+}
+
+.about-me {
+  padding: 0.5rem;
+  background-color: white;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  width: 13rem;
+}
+
+/*# sourceMappingURL=profilepage.css.map */

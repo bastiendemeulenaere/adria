@@ -1,0 +1,711 @@
+openapi: 3.0.3
+info:
+  title: 'Adria Concept Title - Adria-10'
+  description: 'Description of the Adria API - Adria-10'
+  version: 0.0.1
+servers:
+  - url: https://project-2.ti.howest.be/2023-2024/group-10/
+    description: 'Public API'
+  - url: http://localhost:8080/
+    description: 'Local API'
+
+paths:
+  /api/public/event:
+    get:
+      description: Get all events
+      operationId: getEventsPublic
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+
+  /api/auth/login:
+    post:
+      description: Login
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adriaId:
+                  type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+  /api/user:
+    get:
+      description: Get the current user
+      operationId: getUser
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /api/user/event:
+    get:
+      description: Get the events of the user
+      operationId: getEventsByUserId
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user' 
+
+  /api/user/about-me:
+    put:
+      description: Edit user's "about me" information
+      operationId: editAboutMe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aboutMe:
+                  type: string
+              required:
+                - aboutMe
+      responses:
+        '200':
+          description: OK
+  /api/presentation/danger/{sectorId}:
+    get:
+      description: Make the sector a danger zone
+      operationId: addDangerZone
+      parameters:
+        - in: path
+          name: sectorId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DangerousArea'
+  /api/sector:
+    get:
+      description: Get all current sectors
+      operationId: getSectors
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sector'
+  /api/sector/{sectorId}:
+    get:
+      description: Get a world sector by sectorId
+      operationId: getSector
+      parameters:
+        - in: path
+          name: sectorId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sector'
+  /api/adria:
+    get:
+      description: Get the adria world
+      operationId: getAdria
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sectors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sector'
+  /api/event/ongoing:
+    get:
+      description: Get ongoing events for a specific user
+      operationId: getOngoingEvents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+
+  /api/event/upcoming:
+    get:
+      description: Get upcoming events for a specific user
+      operationId: getUpcomingEvents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+
+  /api/event/created:
+    get:
+      description: Get created events by user ID
+      operationId: getCreatedEventsById
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/createEvent'
+
+
+  /api/event/{eventId}/image:
+    post:
+      description: Save image to file
+      operationId: saveImageToFile
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                eventImage:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK                
+
+  /api/user/interests:
+    get:
+      description: Get all interests
+      operationId: getUserInterests
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/category'
+    post:
+      description: Add multiple interests
+      operationId: addUserInterests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+      responses:
+        '200':
+          description: Ok
+  /api/event:
+    get:
+      description: Get all events
+      operationId: getEvents
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+    post:
+      description: Create an event
+      operationId: createEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createEvent'
+      responses:
+        201:
+          description: Event created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEvent'
+  /api/event/{eventId}:
+    get:
+      description: Get a specific event by eventId
+      operationId: getEventById
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEvent'
+    put:
+      description: Edit a specific event by eventId
+      operationId: editEvent
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEvent'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createEvent'
+
+  /api/event/{eventId}/cancel:
+    put:
+      description: Cancel an event
+      operationId: cancelEvent
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to cancel
+      responses:
+        '200':
+          description: Event canceled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'            
+  /api/event/{eventId}/location:
+    put:
+      description: Set location to an event
+      operationId: setEventLocation
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to cancel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coordinate'
+      responses:
+        '200':
+          description: Event location set successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
+  /api/event/{eventId}/join:
+    get:
+      description: Check if user is attending an event
+      operationId: isAttendingEvent
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  attending:
+                    type: boolean
+                    description: Indicates if the user is attending the event
+                  eventId:
+                    type: integer
+                    description: The ID of the event checked
+                example:
+                  attending: true
+                  eventId: 123
+           
+    post:
+      description: Join an event
+      operationId: joinEvent
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to join
+      responses:
+        '200':
+          description: Event joined successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
+  /api/event/{eventId}/leave:
+    post:
+      description: Leave an event
+      operationId: leaveEvent
+      parameters:
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the event to leave
+      responses:
+        '200':
+          description: Event left successfully
+  
+
+    
+  /api/category:
+    get:
+      description: Get all categories
+      operationId: getCategories
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/category'
+
+  /api/category/{categoryId}:
+    get:
+      description: Get a specific category by categoryId
+      operationId: getCategoryById
+      parameters:
+        - in: path
+          name: categoryId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the category to retrieve
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/category'
+
+
+  /api/interest:
+    get:
+      description: Get all interests
+      operationId: getInterests
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/interest'
+
+  /api/notifications:
+    get:
+      summary: Get user notifications
+      operationId: getNotifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
+
+  /api/notifications/{notificationId}/read:
+    put:
+      summary: Set notification to read
+      operationId: setToRead
+      parameters:
+        - in: path
+          name: notificationId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the notification to set to read
+      responses:
+        '200':
+          description: Notification set to read successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notification'
+
+  /api/notifications/count:
+    get:
+      summary: Get the count of unread notifications for a user
+      operationId: getNotificationsCount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: The count of unread notifications
+                example:
+                  count: 5
+
+
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+  schemas:
+    Coordinate:
+      type: object
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+      required:
+        - x
+        - y
+    CoordinateRange:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/Coordinate'
+        end:
+          $ref: '#/components/schemas/Coordinate'
+      required:
+        - start
+        - end
+    DangerousArea:
+      type: object
+      properties:
+        reason:
+          type: string
+        coordinateRange:
+          $ref: '#/components/schemas/CoordinateRange'
+      required:
+        - reason
+        - coordinateRange
+    Sector:
+      type: object
+      properties:
+        name:
+          type: string
+        coordinateRange:
+          $ref: '#/components/schemas/CoordinateRange'
+        dangerousAreas:
+          type: array
+          items:
+            $ref: '#/components/schemas/DangerousArea'
+      required:
+        - name
+        - coordinateRange
+        - dangerousAreas
+    interest:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+        category:
+          type: integer
+      required:
+        - name
+        - category
+    createEvent:
+      type: object
+      properties:
+        name:
+          type: string
+        eventType:
+          type: string
+        description:
+          type: string
+        amountOfPeople:
+          type: integer
+        categoryId:
+          type: integer
+        sectorId:
+          type: integer
+        startDateTime:
+          type: integer
+        hours:
+          type: integer
+      required:
+        - name
+        - description
+        - amountOfPeople
+        - categoryId
+        - sectorId
+    event:
+      type: object
+      properties:
+        name:
+          type: string
+        eventType:
+          type: string
+        description:
+          type: string
+        amountOfPeople:
+          type: integer
+        category:
+          $ref: '#/components/schemas/category'
+        sector:
+          $ref: '#/components/schemas/sector'
+        organiser:
+          $ref: '#/components/schemas/user'
+        startDateTime:
+          type: integer
+        hours:
+          type: integer
+        attendees:
+          type: array
+          items:
+            $ref: '#/components/schemas/user'
+      required:
+        - name
+        - description
+        - amountOfPeople
+        - categoryId
+        - sectorId
+        - startDateTime
+        - hours
+    category:
+      type: object
+      properties:
+        category:
+          type: string
+        id:
+          type: integer
+          minimum: 1
+      required:
+        - category
+        - id
+    sector:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: integer
+          minimum: 1
+      required:
+        - name
+        - id
+    user:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        id:
+          type: string
+          example: "d97bfdf2-4cf5-4ea2-88cd-5e96455b345a"
+        aboutMe:
+          type: string
+          example: "I'm a cool guy"
+    quote:
+      type: object
+      properties:
+        value:
+          type: string
+          x-faker: lorem.sentence
+          example: "Life is a disease: sexually transmitted, and invariably fatal."
+        id:
+          type: integer
+          minimum: 1
+          example: 8
+      required:
+        - value
+        - id
+      example:
+        value: See, the problem is that God gives men a brain and a penis, and only enough blood to run one at a time.
+        id: 89
+    notification:
+      type: object
+      properties:
+        notificationId:
+          type: integer
+        title:
+          type: string
+        timeAgo:
+          type: string
+        description:
+          type: string

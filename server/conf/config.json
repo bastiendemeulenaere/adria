@@ -1,0 +1,15 @@
+{
+  "http": {
+    "port": 8080
+  },
+  "db" : {
+    "url": "jdbc:h2:./db-10",
+    "username": "",
+    "password": "",
+    "webconsole.port": 9000
+  },
+  "api" : {
+    "url": "https://project-2.ti.howest.be/monitor/apis/group-10",
+    "url_": "../documentation/api-spec/openapi.yaml"
+  }
+}

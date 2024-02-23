@@ -1,0 +1,94 @@
+@use "var";
+
+
+#my-events {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  $gap: 2rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  height: 90vh;
+  overflow-y: hidden;
+
+  .horizontal {
+    display: flex;
+    gap: $gap;
+    overflow-x: scroll;
+    padding-bottom: 1rem;
+  }
+
+
+  h2 {
+    font-size: 1.75rem;
+    padding: 1rem $gap 1rem;
+  }
+
+  #joined-events {
+    height: 90vh;
+
+    .event {
+      flex: 0 0 18%;
+
+      &:first-child {
+        margin-left: $gap;
+      }
+
+      &:last-child {
+        margin-right: $gap;
+      }
+    }
+  }
+
+  #created-events {
+    box-sizing: border-box;
+    height: 90vh;
+    overflow: auto;
+
+    h2 {
+      position: sticky;
+      top: 0;
+      background: var.$white-color;
+      padding-left: $gap;
+    }
+
+    div.event-container {
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      padding: 0 $gap;
+    }
+
+    .event {
+      &:last-child {
+        margin-bottom: $gap;
+      }
+    }
+  }
+
+  .create-event-button {
+    position: absolute;
+    bottom: $gap;
+    right: 0;
+    margin-right: $gap;
+    outline: 2px solid var.$primary-color;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .error {
+    color: #ff4444;
+    background-color: #ffebee;
+    border: 1px solid #ff4444;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-left: $gap;
+  }
+}

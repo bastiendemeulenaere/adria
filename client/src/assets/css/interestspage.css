@@ -1,0 +1,39 @@
+.interests-page {
+  text-align: center;
+  padding: 20px;
+}
+.interests-page h2 {
+  margin-top: 0;
+}
+.interests-page h3 {
+  margin-bottom: 20px;
+}
+.interests-page .interests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-items: center;
+}
+.interests-page .interests-grid .box-interest {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
+}
+.interests-page .interests-grid .box-interest > div {
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+}
+.interests-page .interests-grid .interest-checkbox {
+  display: flex;
+  align-items: center;
+}
+.interests-page .interests-grid input[type=checkbox] {
+  margin-right: 10px;
+}
+.interests-page .skip-button {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=interestspage.css.map */
